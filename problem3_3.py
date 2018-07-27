@@ -28,7 +28,8 @@ def classifier(estimator, parameters, cv, X, y):
 
 
 
-
-
                         
-
+with open ('C:\\Users\\DENVER\\edX\\AI\\Classification\\output3.csv', 'w') as f:
+    writer = csv.writer(f, delimiter = ',')
+    for row in results:
+        writer.writerow(row)
