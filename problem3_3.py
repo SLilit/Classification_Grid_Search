@@ -26,6 +26,22 @@ def classifier(estimator, parameters, cv, X, y):
     return [max_train, max_test]
 
 
+from sklearn.svm import SVC
+
+est = SVC(kernel = 'linear')
+prm = {'C': [0.1, 0.5, 1, 5, 10, 50, 100]}
+result = classifier(est, prm, cv, X_data, y_data)
+results[0] = results[0] + result
+
+est = SVC(kernel = 'poly')
+prm = {'C': [0.1, 1, 3], 'degree': [4, 5, 6], 'gamma': [0.1, 0.5]}
+result = classifier(est, prm, cv, X_data, y_data)
+results[1] = results[1] + result
+
+est = SVC(kernel = 'rbf')
+prm = {'C': [0.1, 0.5, 1, 5, 10, 50, 100], 'gamma': [0.1, 0.5, 1, 3, 6, 10]}
+result = classifier(est, prm, cv, X_data, y_data)
+results[2] = results[2] + result
 
 
                         
