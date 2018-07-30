@@ -43,6 +43,15 @@ prm = {'C': [0.1, 0.5, 1, 5, 10, 50, 100], 'gamma': [0.1, 0.5, 1, 3, 6, 10]}
 result = classifier(est, prm, cv, X_data, y_data)
 results[2] = results[2] + result
 
+from sklearn.linear_model import LogisticRegression
+
+est = LogisticRegression()
+prm = {'C': [0.1, 0.5, 1, 5, 10, 50, 100]}
+result = classifier(est, prm, cv, X_data, y_data)
+results[3] = results[3] + result
+print('LogisticRegression')
+
+
 
                         
 with open ('C:\\Users\\DENVER\\edX\\AI\\Classification\\output3.csv', 'w') as f:
