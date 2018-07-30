@@ -51,6 +51,14 @@ result = classifier(est, prm, cv, X_data, y_data)
 results[3] = results[3] + result
 print('LogisticRegression')
 
+from sklearn.neighbors import KNeighborsClassifier
+
+est = KNeighborsClassifier()
+prm = {'n_neighbors': [3, 5, 10, 20, 35, 50], 'leaf_size': [5, 10, 15, 30, 60]}
+result = classifier(est, prm, cv, X_data, y_data)
+results[4] = results[4] + result
+print('KNeighborsClassifier')
+
 
 
                         
