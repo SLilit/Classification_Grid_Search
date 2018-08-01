@@ -2,7 +2,7 @@ from sklearn.model_selection import StratifiedShuffleSplit, GridSearchCV
 import numpy as np
 import csv
 
-data = np.genfromtxt('C:\\Users\\DENVER\\edX\\AI\\Classification\\input3.csv', delimiter = ",")
+data = np.genfromtxt('input3.csv', delimiter = ",")
 X_data = data[:, :2]
 y_data = data[:, 2]
 cv = StratifiedShuffleSplit(n_splits = 5, test_size = 0.4, random_state = 42)
@@ -32,16 +32,19 @@ est = SVC(kernel = 'linear')
 prm = {'C': [0.1, 0.5, 1, 5, 10, 50, 100]}
 result = classifier(est, prm, cv, X_data, y_data)
 results[0] = results[0] + result
+print('SVC')
 
 est = SVC(kernel = 'poly')
 prm = {'C': [0.1, 1, 3], 'degree': [4, 5, 6], 'gamma': [0.1, 0.5]}
 result = classifier(est, prm, cv, X_data, y_data)
 results[1] = results[1] + result
+print('SVC')
 
 est = SVC(kernel = 'rbf')
 prm = {'C': [0.1, 0.5, 1, 5, 10, 50, 100], 'gamma': [0.1, 0.5, 1, 3, 6, 10]}
 result = classifier(est, prm, cv, X_data, y_data)
 results[2] = results[2] + result
+print('SVC')
 
 from sklearn.linear_model import LogisticRegression
 
@@ -59,10 +62,26 @@ result = classifier(est, prm, cv, X_data, y_data)
 results[4] = results[4] + result
 print('KNeighborsClassifier')
 
+from sklearn.tree import DecisionTreeClassifier
+
+est = DecisionTreeClassifier()
+prm = {'max_depth': [5, 10, 20, 35, 50], 'min_samples_split': [3, 4, 8, 10]}
+result = classifier(est, prm, cv, X_data, y_data)
+results[5] = results[5] + result
+print('DecisionTreeClassifier')
+
+from sklearn.ensemble import RandomForestClassifier
+
+est = RandomForestClassifier()
+prm = {'max_depth': [5, 10, 20, 35, 50], 'min_samples_split': [3, 4, 8, 10]}
+result = classifier(est, prm, cv, X_data, y_data)
+results[6] = results[6] + result
+print('RandomForestClassifier')
+
 
 
                         
-with open ('C:\\Users\\DENVER\\edX\\AI\\Classification\\output3.csv', 'w') as f:
+with open ('output3.csv', 'w') as f:
     writer = csv.writer(f, delimiter = ',')
     for row in results:
         writer.writerow(row)
